@@ -1,0 +1,30 @@
+body.prompt-page { width: 100%; }
+.prompt-page header { width: 100%; position: static; padding: 14px 24px; }
+.prompt-page main { width: 100%; min-width: 0; max-width: 1440px; margin: 0 auto; padding: 20px 24px 40px; }
+.prompt-page h1 { font-size: 25px; margin: 0 0 10px; }
+.prompt-page p { line-height: 1.65; }
+.prompt-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 22px 0 12px; }
+.prompt-controls button, .prompt-controls input { padding: 8px 12px; }
+.prompt-controls input { flex: 1; min-width: 180px; max-width: 400px; }
+.prompt-controls button[aria-pressed="true"] { color: #06121f; background: var(--accent); border-color: var(--accent); font-weight: 600; }
+.prompt-controls button:disabled { opacity: 0.55; cursor: wait; }
+.prompt-table-wrap { width: 100%; overflow: auto; max-height: 70vh; border: 1px solid var(--line); border-radius: 6px; }
+table.prompt-table { width: 100%; white-space: normal; font-size: 13px; table-layout: fixed; }
+table.prompt-table thead { top: 0; }
+table.prompt-table th, table.prompt-table td { padding: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+table.prompt-table th:nth-child(1) { width: 90px; }
+table.prompt-table th:nth-child(2) { width: 52%; }
+table.prompt-table th:nth-child(4) { width: 135px; }
+.prompt-id { color: var(--accent); font-variant-numeric: tabular-nums; font-family: ui-monospace, monospace; }
+.prompt-dimension, .prompt-subset { display: inline-block; border: 1px solid var(--line); border-radius: 4px; margin: 2px 4px 2px 0; padding: 1px 5px; font-size: 11px; color: var(--muted); }
+.prompt-subset { color: var(--accent); }
+#prompt-error { color: var(--bad); }
+#prompt-provenance { margin-top: 20px; color: var(--muted); }
+#source-info { overflow-wrap: anywhere; line-height: 1.7; }
+.prompt-page :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 700px) {
+  .prompt-page main { padding: 16px 12px; }
+  .prompt-page header { padding: 12px; }
+  .prompt-controls label { width: 100%; }
+  table.prompt-table { min-width: 620px; }
+}

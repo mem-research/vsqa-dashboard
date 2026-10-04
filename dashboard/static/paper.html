@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper · VSQA</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/paper.css">
+<script src="/paper.js" defer></script>
+</head>
+<body class="paper-page">
+<header>
+  <a class="brand" href="/">VSQA <span>live paper</span></a>
+  <span id="paper-state" class="paper-state" role="status" aria-live="polite">loading…</span>
+  <dl class="paper-times">
+    <div><dt>Source updated</dt><dd id="source-time">—</dd></div>
+    <div><dt>PDF built</dt><dd id="pdf-time">—</dd></div>
+    <div><dt>Your copy</dt><dd id="loaded-time">—</dd></div>
+  </dl>
+  <div class="hdr-right">
+    <button id="reload" class="small" type="button">Reload PDF</button>
+    <a id="download" class="button-link" href="/public/paper.pdf" download>Download PDF</a>
+    <a href="/">Back to dashboard</a>
+  </div>
+</header>
+<p id="paper-error" class="paper-error" hidden></p>
+<iframe id="paper-frame" title="VSQA paper PDF"></iframe>
+</body>
+</html>

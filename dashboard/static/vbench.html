@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VBench prompts · VSQA</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/vbench.css">
+<script src="/vbench.js" defer></script>
+</head>
+<body class="prompt-page">
+<header><a class="brand" href="/">VSQA</a><span>VBench prompt browser</span><a class="hdr-right" href="/">Back to dashboard</a></header>
+<main>
+  <h1>VBench prompt list</h1>
+  <p class="muted">查看原始英文 prompt，以及实际评测使用的 q7 / q7tiny-v1 子集。Global ID 是完整语料中的 <strong>0-based 原始索引</strong>，筛选后不重新编号。</p>
+  <section class="prompt-controls" aria-label="Prompt 筛选">
+    <div class="chips" id="datasets" aria-label="数据集">
+      <button type="button" data-dataset="all" aria-pressed="true" disabled>全部</button>
+      <button type="button" data-dataset="q7" aria-pressed="false" disabled>q7</button>
+      <button type="button" data-dataset="q7tiny" aria-pressed="false" disabled>q7tiny-v1</button>
+    </div>
+    <label for="prompt-search">搜索原文 / Global ID</label>
+    <input id="prompt-search" type="search" placeholder="例如 grapes 或 0683" disabled>
+    <button type="button" id="clear-search" disabled>清除搜索</button>
+  </section>
+  <p id="dataset-note" class="muted"></p>
+  <p id="prompt-status" role="status" aria-live="polite">正在加载语料…</p>
+  <p id="prompt-error" role="alert" hidden></p>
+  <div class="prompt-table-wrap">
+    <table class="grid prompt-table">
+      <thead><tr><th scope="col">Global ID</th><th scope="col">Prompt 原文</th><th scope="col">原始维度</th><th scope="col">所属子集</th></tr></thead>
+      <tbody id="prompt-rows"></tbody>
+    </table>
+  </div>
+  <details id="prompt-provenance" hidden><summary>数据来源与筛选规则</summary><div id="source-info"></div></details>
+  <noscript>此页面需要 JavaScript 加载和筛选 prompt。</noscript>
+</main>
+</body>
+</html>

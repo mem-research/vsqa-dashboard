@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VSQA E0029/E0030 dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="header-top">
+  <div class="brand">VSQA <span>E0029 training · E0030 VBench</span></div>
+  <nav class="chips" aria-label="Dashboard views">
+    <button id="tab-table" class="small primary" aria-pressed="true">Variants</button>
+    <button id="tab-dag" class="small" aria-pressed="false">Training DAG</button>
+    <a href="/vbench">VBench prompts</a>
+    <a href="/paper">Paper</a>
+  </nav>
+  <div class="hdr-right">
+    <span id="selection-summary" class="muted"></span>
+    <button id="btn-compare" class="small">compare selected</button>
+    <button id="btn-queue" class="small">queue &amp; planning</button>
+    <button id="btn-cluster" class="small">cluster</button>
+    <button id="btn-events" class="small">events</button>
+    <button id="btn-warnings" class="small">warnings</button>
+    <span id="clock" class="muted"></span>
+  </div>
+  </div>
+  <div class="toolbar table-controls" aria-label="Hide conditions">
+    <span>Hide:</span>
+    <label><input type="checkbox" id="hide-pv-scale"> PV scale trick = true</label>
+    <label><input type="checkbox" id="hide-dmd8"> DMD 8-step distillation</label>
+    <label><input type="checkbox" id="hide-dmd4"> DMD 4-step distillation</label>
+    <label><input type="checkbox" id="hide-dmd3"> DMD 3-step distillation</label>
+    <label><input type="checkbox" id="hide-no-fake"> MM = native NVFP4·FP8 (not fake quant)</label>
+    <span id="filter-summary" class="muted" aria-live="polite"></span>
+  </div>
+  <div class="toolbar table-controls" aria-label="Row filters">
+    <span>Only:</span>
+    <span id="row-filters" class="chips"></span>
+  </div>
+  <div class="toolbar table-controls">
+    <label>sort <select id="sort-mode"><option value="newest">newest first</option><option value="families">by families (column order)</option></select></label>
+    <input id="filter" placeholder="filter rows (text)" size="28">
+    <label>timeline px/1k steps <input id="tl-scale" type="range" min="40" max="1200" step="10" value="300"></label>
+    <button id="tl-fit" class="small">fit</button>
+    <span id="legend" class="chips"></span>
+  </div>
+</header>
+
+<main id="table-view">
+  <table id="grid" class="grid"></table>
+</main>
+<section id="dag-view" hidden aria-label="Multi-stage training recipes">
+  <div class="toolbar dag-toolbar">
+    <input id="dag-search" placeholder="Find stage / method / checkpoint" aria-label="Search training stages">
+    <button id="dag-all" class="small">All stages</button>
+    <button id="dag-focus" class="small">Selected lineage</button>
+    <button id="dag-out" class="small" aria-label="Zoom out">−</button>
+    <button id="dag-in" class="small" aria-label="Zoom in">+</button>
+    <button id="dag-reset" class="small">100%</button>
+    <button id="dag-fit" class="small">Fit</button>
+    <button id="dag-refresh" class="small">Refresh graph</button>
+    <span id="dag-summary" class="muted" aria-live="polite"></span>
+  </div>
+  <p class="muted dag-help">Drag the canvas or stage body left/right to pan; Ctrl/Cmd + wheel to zoom. Each right-side circle is a checkpoint step: click it to branch from that step. Dashed edges/nodes denote planned stages. Table exclusion filters do not hide ancestors here.</p>
+  <div id="dag-warnings" class="warnbox"></div>
+  <div id="dag-viewport" tabindex="0" aria-label="Scrollable training graph"><div id="dag-space"><div id="dag-canvas"></div></div></div>
+</section>
+
+<div id="bottom" class="panel bottom hidden">
+  <div class="panel-head"><span id="bottom-title"></span><button class="small" data-close="bottom">close</button></div>
+  <div id="bottom-body"></div>
+</div>
+
+<div id="drawer" class="panel drawer hidden">
+  <div class="panel-head"><span id="drawer-title"></span><button class="small" data-close="drawer">close</button></div>
+  <div id="drawer-body"></div>
+</div>
+
+<div id="toast"></div>
+<script src="app.js"></script>
+<script src="recipes.js"></script>
+</body>
+</html>
